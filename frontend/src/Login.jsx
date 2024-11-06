@@ -1,31 +1,28 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from "react";
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
-import './Login.css';
-import Logo from './assets/logo.png';
-import { useNavigate } from 'react-router-dom';
+import "./Login.css";
+import Logo from "./assets/logo.png";
+import { useNavigate } from "react-router-dom";
 
-import { UserContext } from './App';
+import { UserContext } from "./App";
 const Login = () => {
-;
-    const url1= 'http://localhost:8000/Login';
-    const url2= 'http://localhost:8000/Register';
-    const [action, setAction] = useState('');
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const url1 = `${process.env.REACT_APP_BACKEND_URL}/Login`;
+    const url2 = `${process.env.REACT_APP_BACKEND_URL}/Register`;
+    const [action, setAction] = useState("");
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const { setUserId, setToken,token } = useContext(UserContext);
+    const { setUserId, setToken, token } = useContext(UserContext);
     const registerLink = () => {
-        setAction(' active');
+        setAction(" active");
     };
-    const handleRemember = () => {
-        
-    };
+    const handleRemember = () => {};
     const loginLink = () => {
-        setAction('');
+        setAction("");
     };
-    
-    const handleLogin = async(e) => {
+
+    const handleLogin = async (e) => {
         e.preventDefault();
         try {
             const response = await fetch(url1, {
@@ -38,10 +35,10 @@ const Login = () => {
             const data = await response.json();
             console.log(typeof data.token);
             if (response.ok) {
-                setUserId(username);  
-                setToken( data.token); 
-                localStorage.setItem('userlocal', username);
-                navigate('/Homepage');
+                setUserId(username);
+                setToken(data.token);
+                localStorage.setItem("userlocal", username);
+                navigate("/Homepage");
             } else {
                 console.error(data.message);
                 alert(data.message);
@@ -51,7 +48,7 @@ const Login = () => {
         }
     };
 
-    const handleRegister = async(e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
         try {
             const response = await fetch(url2, {
@@ -64,9 +61,9 @@ const Login = () => {
             const data = await response.json();
 
             if (response.ok) {
-                localStorage.setItem('userlocal', username);
-                setUserId(username);                
-                navigate('/Homepage');
+                localStorage.setItem("userlocal", username);
+                setUserId(username);
+                navigate("/Homepage");
             } else {
                 console.error(data.message);
                 alert(data.message);
@@ -84,32 +81,45 @@ const Login = () => {
                         <img src={Logo} className="form-logo" alt="Logo" />
                         <h1>Login</h1>
                         <div className="input-box">
-                            <input 
-                                type="text" 
-                                placeholder="Username" 
+                            <input
+                                type="text"
+                                placeholder="Username"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
-                                required 
+                                required
                             />
                             <FaUser className="icon" />
                         </div>
                         <div className="input-box">
-                            <input 
-                                type="password" 
-                                placeholder="Password" 
+                            <input
+                                type="password"
+                                placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                required 
+                                required
                             />
                             <FaLock className="icon" />
                         </div>
                         <div className="remember-forgot">
-                            <label><input type="checkbox" onClick={handleRemember}/>Remember me</label>
-                            <a href="#" onClick={registerLink}>Forgot Password?</a>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    onClick={handleRemember}
+                                />
+                                Remember me
+                            </label>
+                            <a href="#" onClick={registerLink}>
+                                Forgot Password?
+                            </a>
                         </div>
                         <button type="submit">Login</button>
                         <div className="register-link">
-                            <p>Don't have an account? <a href="#" onClick={registerLink}>Register</a></p>
+                            <p>
+                                Don't have an account?{" "}
+                                <a href="#" onClick={registerLink}>
+                                    Register
+                                </a>
+                            </p>
                         </div>
                     </form>
                 </div>
@@ -119,41 +129,49 @@ const Login = () => {
                         <img src={Logo} className="form-logo" alt="Logo" />
                         <h1>Registration</h1>
                         <div className="input-box">
-                            <input 
-                                type="text" 
-                                placeholder="Username" 
+                            <input
+                                type="text"
+                                placeholder="Username"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
-                                required 
+                                required
                             />
                             <FaUser className="icon" />
                         </div>
                         <div className="input-box">
-                            <input 
-                                type="email" 
-                                placeholder="Email" 
+                            <input
+                                type="email"
+                                placeholder="Email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                required 
+                                required
                             />
                             <FaEnvelope className="icon" />
                         </div>
                         <div className="input-box">
-                            <input 
-                                type="password" 
-                                placeholder="Password" 
+                            <input
+                                type="password"
+                                placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                required 
+                                required
                             />
                             <FaLock className="icon" />
                         </div>
                         <div className="remember-forgot">
-                            <label><input type="checkbox" />I agree to Terms & Conditions</label>
+                            <label>
+                                <input type="checkbox" />I agree to Terms &
+                                Conditions
+                            </label>
                         </div>
                         <button type="submit">Register</button>
                         <div className="register-link">
-                            <p>Already have an account? <a href="#" onClick={loginLink}>Login</a></p>
+                            <p>
+                                Already have an account?{" "}
+                                <a href="#" onClick={loginLink}>
+                                    Login
+                                </a>
+                            </p>
                         </div>
                     </form>
                 </div>
