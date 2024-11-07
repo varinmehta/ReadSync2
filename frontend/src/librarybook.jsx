@@ -28,7 +28,7 @@ function librarybook({ book }) {
         if (newPageCount >= 0 && newPageCount <= totalPages) {
             try {
                 const response = await axios.post(
-                    `${process.env.REACT_APP_BACKEND_URL}/updatePagesRead`,
+                    'https:read-sync2.vercel.app/updatePagesRead',
                     {
                         userId: storedUsername,
                         bookTitle: book.title,

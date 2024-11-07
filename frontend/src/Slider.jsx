@@ -31,7 +31,7 @@ const Slider = () => {
     const fetchTrendingBooks = async () => {
         try {
             const response = await fetch(
-                `${process.env.REACT_APP_BACKEND_URL}/trending`
+                'https:read-sync2.vercel.app/trending'
             );
             const trendingData = await response.json();
             setData(trendingData.books);

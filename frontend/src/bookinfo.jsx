@@ -58,7 +58,7 @@ const Bookinfo = () => {
     const handleRemoveToLibrary = async () => {
         try {
             const response = await axios.post(
-                `${process.env.REACT_APP_BACKEND_URL}/removelib`,
+                'https:read-sync2.vercel.app/removelib',
                 {
                     userId: userId,
                     bookTitle: book.title,
