@@ -8,7 +8,7 @@ const connectDB = require("./db/connection");
 const app = express();
 app.use(cookieParser());
 connectDB(process.env.MONGO_URL);
-app.listen(process.env.PORT || 8000);
+//app.listen(process.env.PORT || 8000);
 app.use(
     cors({
         origin: "https:read-sync2-frontend.vercel.app",
