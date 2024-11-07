@@ -1,6 +1,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const user = require("./routes/user");
+const cors = require("cors");
 require("dotenv").config();
 const connectDB = require("./db/connection");
 
@@ -13,28 +14,20 @@ app.use(express.json());
 // Connect to Database
 connectDB(process.env.MONGO_URL);
 
-// Manual CORS handling middleware
-app.use((req, res, next) => {
-    // Allow specific origin
-    res.header("Access-Control-Allow-Origin", "https://read-sync2-frontend.vercel.app");
-
-    // Allowed HTTP methods
-    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-
-    // Allowed headers
-    res.header("Access-Control-Allow-Headers", "Content-Type, Origin, X-Requested-With");
-
-    // Allow credentials such as cookies
-    res.header("Access-Control-Allow-Credentials", "true");
-
-    // If the request method is OPTIONS (preflight), end the request with 200 status
-    if (req.method === "OPTIONS") {
-        return res.sendStatus(200);
-    }
-
-    // Otherwise, proceed to the next middleware or route handler
-    next();
-});
+// Enable CORS for frontend deployment
+app.use(
+    cors({
+        origin: "https://read-sync2-frontend.vercel.app",
+        methods: ["GET", "POST", "OPTIONS"],
+        allowedHeaders: [
+            "Content-Type",
+            "Origin",
+            "X-Requested-With",
+            "Accept",
+        ], // Ensure frontend URL is correct
+        credentials: true,
+    })
+);
 
 // Use user routes
 app.use(user);
