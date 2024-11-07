@@ -15,9 +15,9 @@ const Navbar = () => {
 
     const handleKeyDown = async (event) => {
         if (event.key === "Enter") {
-            try {
+          try {
                 const response = await axios.post(
-                    "https:read-sync2.vercel.app/search",
+                    "https://read-sync2.vercel.app/search",
                     {
                         title: searchValue,
                     }

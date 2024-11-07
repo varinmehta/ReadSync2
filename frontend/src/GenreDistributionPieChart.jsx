@@ -21,7 +21,7 @@ const GenreDistributionPieChart = () => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    "https:read-sync2.vercel.app/user-library-genre-distribution"
+                    "https://read-sync2.vercel.app/user-library-genre-distribution"
                 );
                 if (response.data.success) {
                     setData(response.data.data);

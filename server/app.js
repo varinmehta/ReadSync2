@@ -14,6 +14,7 @@ app.use(express.json());
 // Connect to Database
 connectDB(process.env.MONGO_URL);
 
+
 // Enable CORS for frontend deployment
 app.use(
     cors({

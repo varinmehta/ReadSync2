@@ -54,7 +54,7 @@ const library = () => {
         const fetchBooks = async () => {
             try {
                 const response = await fetch(
-                    `https:read-sync2.vercel.app/library?userId=${storedUsername}`,
+                    `https://read-sync2.vercel.app/library?userId=${storedUsername}`,
                     {
                         method: "GET",
                         headers: {

@@ -53,7 +53,7 @@ function librarybook({ book }) {
     const handleClick = async (book) => {
         try {
             const response = await axios.get(
-                `http://localhost:8000/bookdetails/${book.title}`,
+                `https://read-sync2.vercel.app/${book.title}`,
                 {
                     withCredentials: true,
                 }

@@ -19,7 +19,7 @@ const TrendingBooksChart = () => {
         const fetchChartData = async () => {
             try {
                 const response = await fetch(
-                    "https:read-sync2.vercel.app/charts"
+                    "https://read-sync2.vercel.app/charts"
                 );
                 const result = await response.json();
                 if (result.success) {
