@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 import { UserContext } from "./App";
 const Login = () => {
-    const url1 = 'https:read-sync2.vercel.app/Login';
-    const url2 = 'https:read-sync2.vercel.app/Register';
+    const url1 = "https:read-sync2.vercel.app/Login";
+    const url2 = "https:read-sync2.vercel.app/Register";
     const [action, setAction] = useState("");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
