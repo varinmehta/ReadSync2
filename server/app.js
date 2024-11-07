@@ -6,28 +6,25 @@ require("dotenv").config();
 const connectDB = require("./db/connection");
 
 const app = express();
+
+// Middleware
 app.use(cookieParser());
+app.use(express.json());
+
+// Connect to Database
 connectDB(process.env.MONGO_URL);
-//app.listen(process.env.PORT || 8000);
+
+// Enable CORS for frontend deployment
 app.use(
     cors({
-        origin: "https:read-sync2-frontend.vercel.app",
+        origin: "https://read-sync2-frontend.vercel.app", // Ensure frontend URL is correct
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
     })
 );
 
-// app.use(
-//     cors({
-//         origin: "http://localhost:5173",
-//         credentials: true,
-//     })
-// );
-
-//Middleware
-
-app.use(express.json());
-
+// Use user routes
 app.use(user);
 
-console.log("Listening on port 8000");
+// Export the app as a serverless function
+module.exports = app;
