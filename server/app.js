@@ -14,12 +14,12 @@ app.use(express.json());
 // Connect to Database
 connectDB(process.env.MONGO_URL);
 
-
 // Enable CORS for frontend deployment
 app.use(
     cors({
-        origin: "https://read-sync2-frontend.vercel.app", // Ensure frontend URL is correct
-        methods: ["GET", "POST", "PUT", "DELETE"],
+        origin: "https://read-sync2-frontend.vercel.app",
+        methods: ["GET", "POST", "OPTIONS"],
+        allowedHeaders: ["Content-Type", "Origin", "X-Requested-With"], // Ensure frontend URL is correct
         credentials: true,
     })
 );
