@@ -9,7 +9,7 @@ const app = express();
 app.use(cookieParser());
 app.use(
     cors({
-        origin: "https:read-sync2.vercel.app",
+        origin: "https:read-sync2-frotend.vercel.app",
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
     })
